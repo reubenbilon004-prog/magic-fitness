@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Magic Fitness | Thrissur Premium Gym</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* ===== FULL PAGE BACKGROUND WITH LION LOGO ===== */
+        /* The background covers entire page, fixed, with the fierce lion logo perfectly fitted */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('logo.png') center center / cover no-repeat;
+            filter: brightness(0.3) contrast(1.1);
+            z-index: -2;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        /* Dark dynamic overlay to ensure text readability but let logo presence shine */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(0,0,0,0.65), rgba(0,0,0,0.85));
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Additional animated glow effect to enhance the lion logo */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 50% 50%, rgba(255,7,58,0.12), transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            animation: slowBreathing 8s infinite ease-in-out;
+        }
+
+        @keyframes slowBreathing {
+            0% { opacity: 0.4; transform: scale(1);}
+            50% { opacity: 0.8; transform: scale(1.05);}
+            100% { opacity: 0.4; transform: scale(1);}
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Oswald', 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* HEADER - sleek & glass */
+        header {
+            background: rgba(8, 8, 8, 0.85);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 2px solid #ff073a;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: 800;
+            font-family: 'Bebas Neue', sans-serif;
+            color: #ff073a;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px rgba(255,7,58,0.5);
+            transition: transform 0.2s;
+        }
+        .logo:hover {
+            transform: scale(1.02);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+        .nav-links li a {
+            text-decoration: none;
+            color: #f0f0f0;
+            font-weight: 600;
+            font-size: 15px;
+            transition: 0.25s;
+            position: relative;
+        }
+        .nav-links li a:hover {
+            color: #ff073a;
+        }
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -6px;
+            left: 0;
+            background: #ff073a;
+            transition: width 0.25s ease;
+        }
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+        .mobile-menu {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding-top: 80px;
+        }
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            animation: riseUp 1s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(3px);
+            border-radius: 40px;
+            padding: 40px 30px;
+            border: 1px solid rgba(255,7,58,0.3);
+        }
+        @keyframes riseUp {
+            0% { opacity: 0; transform: translateY(50px);}
+            100% { opacity: 1; transform: translateY(0);}
+        }
+        .hero h1 {
+            font-size: 5.2rem;
+            background: linear-gradient(135deg, #fff, #ff5e7e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+        }
+        .hero h2 {
+            font-size: 2.2rem;
+            margin: 20px 0;
+            font-weight: 600;
+            color: #fff;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            background: #ff073a;
+            color: white;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 10px 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 18px rgba(255,7,58,0.4);
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #ff073a;
+            box-shadow: none;
+        }
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(255,7,58,0.6);
+            background: #e60032;
+        }
+        .btn-outline:hover {
+            background: #ff073a;
+            color: white;
+        }
+
+        /* section styles */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-size: 3rem;
+            display: inline-block;
+            background: linear-gradient(120deg, #fff, #ff7b9c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+        .section-title h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: #ff073a;
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+
+        /* about */
+        .about-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .about-text {
+            flex: 1;
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(8px);
+            padding: 30px;
+            border-radius: 28px;
+            border-left: 4px solid #ff073a;
+        }
+        .about-text h3 {
+            font-size: 2rem;
+            color: #ff5e7e;
+            margin-bottom: 15px;
+        }
+        .about-image {
+            flex: 1;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.5);
+            transition: 0.4s;
+        }
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* features grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+        .feature-card {
+            background: rgba(20,20,20,0.7);
+            backdrop-filter: blur(6px);
+            padding: 35px 20px;
+            border-radius: 28px;
+            text-align: center;
+            border: 1px solid rgba(255,7,58,0.3);
+            transition: all 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-12px);
+            border-color: #ff073a;
+            box-shadow: 0 18px 35px rgba(0,0,0,0.4);
+        }
+        .feature-icon {
+            font-size: 52px;
+            color: #ff073a;
+            margin-bottom: 20px;
+        }
+
+        /* pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+        }
+        .pricing-card {
+            background: rgba(12,12,12,0.75);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .pricing-card:hover {
+            border-color: #ff073a;
+            transform: scale(1.02);
+        }
+        .popular {
+            position: absolute;
+            top: 15px;
+            right: -25px;
+            background: #ff073a;
+            padding: 5px 35px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        .price {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: white;
+            margin: 20px 0;
+        }
+        .pricing-features {
+            list-style: none;
+            margin: 25px 0;
+        }
+        .pricing-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .gallery-item {
+            border-radius: 24px;
+            overflow: hidden;
+            height: 260px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(0deg, #ff073a, transparent);
+            padding: 12px;
+            text-align: center;
+            transform: translateY(100%);
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* testimonials */
+        .testimonials-container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .testimonial {
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 30px;
+            margin: 20px 0;
+            border-left: 5px solid #ff073a;
+            transition: 0.2s;
+        }
+        .testimonial p {
+            font-style: italic;
+            font-size: 1rem;
+        }
+        .client {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .client img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff073a;
+        }
+        .stars {
+            color: gold;
+        }
+
+        /* contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        .contact-info, .contact-form {
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(8px);
+            padding: 32px;
+            border-radius: 32px;
+        }
+        .contact-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .contact-icon {
+            font-size: 28px;
+            color: #ff073a;
+        }
+        .hours ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+        .hours li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.2);
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            background: rgba(25,25,25,0.9);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 40px;
+            padding: 12px 20px;
+            color: white;
+            margin-bottom: 18px;
+            transition: 0.2s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #ff073a;
+            outline: none;
+        }
+        .contact-form textarea {
+            border-radius: 24px;
+            resize: vertical;
+        }
+
+        footer {
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            padding: 45px 0 25px;
+            text-align: center;
+            border-top: 1px solid rgba(255,7,58,0.4);
+        }
+        .social-links a {
+            display: inline-flex;
+            background: rgba(255,255,255,0.1);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            color: white;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+        .social-links a:hover {
+            background: #ff073a;
+            transform: translateY(-5px);
+        }
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 34px;
+            color: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            z-index: 999;
+            transition: 0.2s;
+        }
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* fade-in animation on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1), transform 0.7s ease;
+        }
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3.8rem; }
+            .hero h2 { font-size: 1.8rem; }
+            .section-title h2 { font-size: 2.5rem; }
+            .about-content { flex-direction: column; }
+        }
+        @media (max-width: 768px) {
+            .mobile-menu { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 78px;
+                left: 0;
+                width: 100%;
+                background: #111111e6;
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                padding: 30px 0;
+                transform: translateY(-200%);
+                transition: transform 0.4s;
+                gap: 22px;
+                border-bottom: 2px solid #ff073a;
+                z-index: 999;
+            }
+            .nav-links.active { transform: translateY(0); }
+            .hero h1 { font-size: 2.8rem; }
+            .hero h2 { font-size: 1.4rem; }
+            .hero-content { padding: 30px 18px; }
+            .btn { margin: 8px; width: auto; display: inline-block; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.4rem; }
+            .container { width: 94%; }
+        }
+        .mt-8 { margin-top: 30px; }
+        .text-center { text-align: center; }
+    </style>
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">⚡ MAGIC FITNESS</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Why Us</a></li>
+                <li><a href="#membership">Membership</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>MAGIC FITNESS</h1>
+            <h2>Build Strength. Boost Confidence. Transform.</h2>
+            <p>Thrissur's Premium Fitness Destination — Unleash the Lion Within</p>
+            <div>
+                <a href="#membership" class="btn">Join Now</a>
+                <a href="#contact" class="btn btn-outline">Free Trial</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+    <div class="container">
+        <div class="section-title"><h2>About Us</h2></div>
+        <div class="about-content fade-in">
+            <div class="about-text">
+                <h3>Who We Are</h3>
+                <p>Magic Fitness is not just a gym — it’s a revolution in strength, discipline, and self-mastery. Located in Thrissur, we blend fierce motivation with world-class equipment.</p>
+                <h3>Our Mission</h3>
+                <p>To forge unstoppable athletes and fitness enthusiasts. With expert trainers and a cutting-edge facility, we make your transformation inevitable.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Magic Fitness gym">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section id="features">
+    <div class="container">
+        <div class="section-title"><h2>Why Magic Fitness</h2></div>
+        <div class="features-grid">
+            <div class="feature-card fade-in"><div class="feature-icon"><i class="fas fa-dumbbell"></i></div><h3>Modern Equipment</h3><p>Elite machines & free weights for serious gains</p></div>
+            <div class="feature-card fade-in"><div class="feature-icon"><i class="fas fa-certificate"></i></div><h3>Certified Trainers</h3><p>Expert coaching with personalized attention</p></div>
+            <div class="feature-card fade-in"><div class="feature-icon"><i class="fas fa-heartbeat"></i></div><h3>Smart Workouts</h3><p>HIIT, strength, functional training zones</p></div>
+            <div class="feature-card fade-in"><div class="feature-icon"><i class="fas fa-spa"></i></div><h3>Sterile Hygiene</h3><p>Premium cleanliness & safety protocols</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Membership -->
+<section id="membership">
+    <div class="container">
+        <div class="section-title"><h2>Membership Plans</h2></div>
+        <div class="pricing-grid">
+            <div class="pricing-card fade-in"><h3>Monthly</h3><div class="price">₹2,499 <span>/mo</span></div><ul class="pricing-features"><li>Full gym access</li><li>Group classes</li><li>Locker & WiFi</li><li>Flexible timing</li></ul><a href="#contact" class="btn">Join</a></div>
+            <div class="pricing-card fade-in"><div class="popular">🔥 POPULAR</div><h3>Quarterly</h3><div class="price">₹6,499 <span>/3mo</span></div><ul class="pricing-features"><li>Monthly benefits +</li><li>2 Personal Training</li><li>Nutrition guide</li><li>Body assessment</li></ul><a href="#contact" class="btn">Join</a></div>
+            <div class="pricing-card fade-in"><h3>Annual</h3><div class="price">₹22,999 <span>/year</span></div><ul class="pricing-features"><li>All quarterly perks</li><li>12 PT sessions</li><li>Priority classes</li><li>Save 25%</li></ul><a href="#contact" class="btn">Join</a></div>
+        </div>
+        <div class="text-center mt-8 fade-in"><p><strong>🔥 Personal training & couple plans available — Contact us</strong></p></div>
+    </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery">
+    <div class="container">
+        <div class="section-title"><h2>GALLERY</h2></div>
+        <div class="gallery-grid">
+            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="gym interior"><div class="gallery-caption">Elite Zone</div></div>
+            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="weights"><div class="gallery-caption">Strength Arena</div></div>
+            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1534367507877-0edd93bd013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="training"><div class="gallery-caption">Personal Coaching</div></div>
+            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="group"><div class="gallery-caption">Group Energy</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials">
+    <div class="container">
+        <div class="section-title"><h2>Testimonials</h2></div>
+        <div class="testimonials-container">
+            <div class="testimonial fade-in"><p>"The vibe at Magic Fitness is electric! Trainers are legends, and the lion logo spirit pushes me every day. Best decision for my fitness journey in Thrissur."</p><div class="client"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="client"><div><h4>Rajesh Kumar</h4><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div></div></div>
+            <div class="testimonial fade-in"><p>"Transformed my lifestyle in 3 months. Modern equipments, clean and motivating. The background of fierce lion inspires strength! Highly recommended!"</p><div class="client"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="client"><div><h4>Priya Menon</h4><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div></div></div></div>
+            <div class="testimonial fade-in"><p>"Professional coaches and fantastic community. From weight loss to muscle gain – they customise everything. Magic Fitness is the real deal."</p><div class="client"><img src="https://randomuser.me/api/portraits/men/67.jpg" alt="client"><div><h4>Vikram Nair</h4><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+    <div class="container">
+        <div class="section-title"><h2>Contact & Visit</h2></div>
+        <div class="contact-grid">
+            <div class="contact-info fade-in">
+                <h3>Magic Fitness Hub</h3>
+                <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><strong>Thrissur, Kerala</strong><br>Near Round North, MG Road</div></div>
+                <div class="contact-item"><div class="contact-icon"><i class="fas fa-phone-alt"></i></div><div>+91 80789 36890</div></div>
+                <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div>reubenbilon2004@gmail.com</div></div>
+                <div class="hours"><h4>⏰ Opening Hours</h4><ul><li><span>Morning</span><span>5:00 AM – 10:00 AM</span></li><li><span>Evening</span><span>4:00 PM – 10:00 PM</span></li></ul></div>
+            </div>
+            <div class="contact-form fade-in">
+                <form id="contactForm">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="tel" placeholder="Mobile Number" required>
+                    <textarea rows="4" placeholder="Your fitness goal or message..."></textarea>
+                    <button type="submit" class="btn">Send Message ✨</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <div class="copyright"><p>© 2025 Magic Fitness — Roar Your Potential. Managed by Reuben Bilon.</p></div>
+    </div>
+</footer>
+
+<a href="https://wa.me/918078936890" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+    // mobile menu toggle
+    const mobileBtn = document.querySelector('.mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+    mobileBtn?.addEventListener('click', () => navLinks.classList.toggle('active'));
+    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('active')));
+
+    // smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e){
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    // Intersection Observer
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add('appear');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2, rootMargin: "0px 0px -60px 0px" });
+    fadeElements.forEach(el => observer.observe(el));
+
+    // form alert
+    const contactForm = document.getElementById('contactForm');
+    contactForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert("📞 Thanks for reaching out! Our team will get back to you soon. Welcome to Magic Fitness!");
+        contactForm.reset();
+    });
+
+    // extra animation: make sure logo background is fully covering on all devices
+    window.addEventListener('resize', () => {});
+</script>
+</body>
+</html>
+```
